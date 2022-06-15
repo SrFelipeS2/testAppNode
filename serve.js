@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+if(process.env.NODE_ENV != 'production'){
+    
+}
 
 app.set('port', process.env.PORT || 4000 );
 

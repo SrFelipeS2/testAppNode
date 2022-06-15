@@ -5,7 +5,7 @@ const getAllUsers = async()=>{
        let users = await db.User.findAll();
        return users;
     }catch (error){
-        return error.message || "failed to get users";
+        throw {status: 500, message: error.message || "Failed to get users"}
     }
 };
 
@@ -14,7 +14,7 @@ const getUser = async(id) =>{
         let user = await db.User.findByPk(id);
         return user
     }catch (error){
-        return error.message || "failed to get user";
+        throw {status: 500, message: error.message || "Failed to get user"}
     }
 };
 
@@ -27,7 +27,7 @@ const createUser = async(name, email, password)=>{
         });
         return newUser;
     }catch (error){
-        return error.message || "User could not be created";
+        throw {status: 500, message: error.message || "Failed to created user"}
     }
 };
 
@@ -43,8 +43,8 @@ const updateUser = async(id,name,email,password)=>{
             }
         });
         return updatedUser;
-    }catch (error){
-        return error.message || "User could not be updated";
+    }catch (error){        
+        throw {status: 500, message: error.message || "Failed to update User"}
     }
 };
 
@@ -57,7 +57,7 @@ const deleteUser = async(id) =>{
         });
         return deletedUser
     }catch (error){
-        return error.message || "User could not be deleted";
+        throw {status: 500, message: error.message || "Failed to delete user"}
     }
 };
 
